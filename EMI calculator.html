@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <title>EMI</title>
+    
+</head>
+<body style="background-color:lightgoldenrodyellow">
+    <div style="text-align:center; background-color: rgb(110, 150, 226); margin-top: 30px;">
+        <h2>EMI Calculator</h2>
+    </div>
+    <div style="margin-left:300px; margin-right:300px;font-size:larger; margin-top: 30px;">
+        <form action="" class="form-label" >
+            <table class="table table-primary">
+                <tr>
+                    <td>
+                        Loan Type:
+                    </td>
+                    <td>
+                        <select name="op" id="Ltype">
+                            <option value="1">Home Loan</option>
+                            <option value="2">Personal Loan</option>
+                            <option value="3">Car Loan</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td>
+                        Enter the Principal Amount:
+                    </td>
+                    <td>
+                        <input type="number" id="pamt" min="100000" name="pamt"required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Enter the Tenure(in months):
+                    </td>
+                    <td>
+                        <input type="number" id="n" min="3" name="n" required>
+                    </td>
+                </tr>
+
+            </table>
+            <br>
+             <center>
+                <div class="btn btn-success" onclick="calc()">Submit</div>
+             </center>
+        </form>
+    </div>
+    <br>
+
+    <div style="margin-left:300px; margin-right:300px;font-size:larger; margin-top: 30px;">
+        <table class="table table-primary">
+            <tr>
+                <td>
+                    Loan Type:
+                </td>
+                <td id="l"> </td>
+            </tr>
+            <tr>
+                <td>Principal Amount:</td>
+                <td id="pa"> </td>
+            </tr>
+            <tr>
+                <td>Number of months:</td>
+                <td id="m"> </td>
+            </tr>
+            <tr>
+                <td>EMI Amount:</td>
+                <td id="emia"> </td>
+            </tr>
+        </table>
+    </div>
+    
+    <script >
+        function calc(){
+            const b=parseInt(document.getElementById('Ltype').selectedIndex);
+            const c=document.getElementById('Ltype').options;
+            const p=parseInt(document.getElementById('pamt').value);
+            const no=parseInt(document.getElementById('n').value);
+            switch(b){
+                case 0:
+                   var r=0.0665;
+                   var d=Math.pow(1-r,no);
+                   var f=Math.pow(1-r,no-1);
+                   var emi=p*r*(d/f);
+                   break;
+                case 1:
+                   var r=0.0705;
+                   var d=Math.pow(1-r,no);
+                   var f=Math.pow(1-r,no-1);
+                   var emi=p*r*(d/f);
+                   break;
+                case 2:
+                   var r=0.0960;
+                   var d=Math.pow(1-r,no);
+                   var f=Math.pow(1-r,no-1);
+                   var emi=p*r*(d/f);
+                   break;
+                
+                   
+
+            }
+            document.getElementById("l").innerHTML=c[b].text;
+            document.getElementById("pa").innerHTML="Rs."+p;
+            document.getElementById("m").innerHTML="Rs."+no;
+            document.getElementById("emia").innerHTML="Rs."+emi;
+
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
